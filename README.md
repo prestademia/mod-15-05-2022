@@ -9,15 +9,10 @@ Siga los siguientes pasos de acontinuación:
 ## Proceso
 ### 1: Paso
 - Ingresar a tu proyecto y buscar el archivo **product-add-to-cart.tpl** en la ruta
-  **/themes/classic/template/catalog/_partials/** y agregar el siguiente código(artificio) despues del input con id= **"quantity_wanted"**
+  **/themes/classic/template/catalog/_partials/** y agrega la class **quantity_wanted**. en el input con id= **"quantity_wanted"**
   
 ```
-  <input type="hidden" id="check_step_min">
-   ``` 
-- Y en el input  de cantidad agrega la class **quantity_wanted**.
-
- ```
-   <input
+  <input
             type="number"
             name="qty"
             id="quantity_wanted"
@@ -27,6 +22,12 @@ Siga los siguientes pasos de acontinuación:
             min="{$product.minimal_quantity}"
             aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
           >
+  
+   ``` 
+- Y despues de editar agrega el siguiente código(artificio).
+
+ ```
+   <input type="hidden" id="check_step_min">
  ```
  
 ### 2: Paso
