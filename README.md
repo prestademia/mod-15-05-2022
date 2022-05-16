@@ -14,7 +14,21 @@ Siga los siguientes pasos de acontinuación:
 ```
   <input type="hidden" id="check_step_min">
    ``` 
-- Y en el mismo input agrega la class **quantity_wanted**.
+- Y en el input  de cantidad agrega la class **quantity_wanted**.
+
+ ```
+   <input
+            type="number"
+            name="qty"
+            id="quantity_wanted"
+            value="{$product.quantity_wanted}"
+            class="input-group hidden quantity_wanted"
+            readonly="readonly"
+            min="{$product.minimal_quantity}"
+            aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
+          >
+ ```
+ 
 ### 2: Paso
 - Ingresar a tu proyecto y buscar el archivo **custom.js** en la ruta
   **/themes/classic/assets/js/** y agregar el siguiente código
