@@ -1,8 +1,11 @@
 #  MOD 15/05/2022
 - Multiplos en pagina de productos y carrito de compras [Prestashop 1.7]
-- Link de video [https://www.youtube.com/watch?v=SspCzjBAvTw](https://www.youtube.com/watch?v=SspCzjBAvTw)
 
+- Link de video PARTE 1 : [https://www.youtube.com/watch?v=SspCzjBAvTw](https://www.youtube.com/watch?v=SspCzjBAvTw)
 [![Alt text](https://img.youtube.com/vi/SspCzjBAvTw/0.jpg)](https://www.youtube.com/watch?v=SspCzjBAvTw)
+
+- Link de video PARTE 2 : [https://www.youtube.com/watch?v=UdyZ9zkTivs](https://www.youtube.com/watch?v=UdyZ9zkTivs)
+[![Alt text](https://img.youtube.com/vi/UdyZ9zkTivs/0.jpg)](https://www.youtube.com/watch?v=UdyZ9zkTivs)
 
 Siga los siguientes pasos de acontinuación:
 
