@@ -81,41 +81,55 @@ Siga los siguientes pasos de acontinuación:
 - Con todo lo anterior (paso 1 y paso 2) completamos la configuración para la ficha de producto y dejamos listo el js para el carrito de compras
 
 ### 3: Paso
-- Ingresar a tu proyecto y buscar el archivo **Cart.php** en la ruta
-  **/classes/** y busca la funcion llamada **function updateQty()** y copia todo esa funcion completa.
+- Ingresar a tu proyecto y buscar el archivo **CartController.php** en la ruta
+  **/controllers/front/** y busca la funcion llamada **function processChangeProductInCart()** y copia todo esa funcion completa.
 
 - Luego crea un override; si ya lo tienes creado agrega la funcion copiada dentro de la clase principal, como se muestra en el video y edita:
 
 - Busca dentro de funcion la parte :
 
  ```
-        if (!empty($id_product_attribute)) {
-            $minimal_quantity = (int) Attribute::getAttributeMinimalQty($id_product_attribute);
-        } else {
-            $minimal_quantity = (int) $product->minimal_quantity;
-        }
+        $qty_to_check = $this->qty;
+        $cart_products = $this->context->cart->getProducts();
  ```
 
-- Después de esta linea agrega lo siguiente:
+- Justo antes de esta linea agrega lo siguiente:
 
   ```
-     $verify_multiply = $this->getProductQuantity(
-            $id_product,
-            $id_product_attribute,
-            (int) $id_customization,
-            (int) $id_address_delivery
-        );
-
-        $min        = $minimal_quantity == 0 ? 1 : $minimal_quantity;
-        $multiply   = $verify_multiply['quantity'] % $min;
-
-        if($multiply != 0 ){
-            $quantity = $min - $multiply;
-        }
-        else{
-            $quantity = $min;
+      if($mode != 'add'){
+            $this->qty = $this->updateQtyMultiply($this->id_product, $this->id_product_attribute);
         }
   ```
+- En el mismo override agregaras la siguiente funcion:
+
+ ```
+      protected function updateQtyMultiply($id_product, $id_product_attribute){
+
+        $cart_products = $this->context->cart->getProducts();
+        $result;
+        if (is_array($cart_products)) {
+            foreach ($cart_products as $cart_product) {
+                if ($this->productInCartMatchesCriteria($cart_product)) {
+
+                    $min        = $cart_product['minimal_quantity'] == 0 ? 1 : $cart_product['minimal_quantity'];
+                    $multiply   = $cart_product['cart_quantity'] % $min;
+                    $refact_quantity = $multiply != 0 ? $min - $multiply : $min;
+
+                    if($cart_product['id_product_attribute'] == $id_product_attribute && $cart_product['id_product'] == $id_product){
+                        $result = $refact_quantity;
+                    }else{
+                        $result = 1;
+                    }
+                    
+                    break;
+                }
+            }
+        }
+
+        return $result;
+       
+    }
+ ```
   
 ### 4: Paso
 - Ahora en este paso final agrega un attributo a un input en el archivo **cart-detailed-product-line.tpl** en la ruta
